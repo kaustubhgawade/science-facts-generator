@@ -14,6 +14,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { router } from "./services/routes.js";
+import logger from "./services/logger.js";
 
 /**
  * Express application instance
@@ -52,6 +53,6 @@ server.use('/api', router);
  * Logs a confirmation message when the server is ready to accept requests
  */
 server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log(`Visit http://localhost:${PORT} to access the application`);
+  logger.info(`Server is running on port ${PORT}`);
+  logger.info(`Visit http://localhost:${PORT} to access the application`);
 });

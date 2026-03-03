@@ -10,6 +10,7 @@ import express from "express";
 import { constants } from "../config/constant.js";
 import { generateScienceFact1 } from "./geminiService.js";
 import { generateScienceFact2 } from "./factApiService.js";
+import logger from "./logger.js";
 
 /**
  * Express Router instance for defining and handling API routes
@@ -58,46 +59,40 @@ export const router = express.Router();
  */
 router.get("/generateFacts", async (req, res) => {
   try {
-    console.log("Received request for /generateFacts");
+    logger.info("Received request for /generateFacts");
     let response;
 
     // Check the USE_GEMINI environment variable to determine which API service to use
     if (process.env.USE_GEMINI === "true") {
-      console.log("Using Gemini Gen API to generate science fact");
+      logger.info("Using Gemini Gen API to generate science fact");
 
       try {
         response = await generateScienceFact1();
       } catch (error) {
-        console.error("Gemini failed or timed out", error);
+        logger.error(error, "Gemini failed or timed out");
 
-        // Fallback mechanism: If HANDLE_FALLBACK is enabled, wrap Gemini API call in try-catch
-        // to gracefully handle failures or timeouts by switching to the API Ninjas Facts API
+        // Fallback to Ninja API if Gemini fails and fallback handling is enabled
         if (process.env.HANDLE_FALLBACK === "true") {
-          console.log("Switching to fallback Ninja API...");
+          logger.info("Switching to fallback Ninja API...");
           response = await generateScienceFact2();
-        }else {
+        } else {
           throw error;
         }
       }
     } else {
-      // Use API Ninjas API as the fallback fact generation service
-      console.log("Using Ninja Fact API to generate science fact");
+      logger.info("Using Ninja Fact API to generate science fact");
       response = await generateScienceFact2();
     }
 
-    // Log the successfully generated fact for debugging purposes
-    console.log("Generated science fact:", response);
+    logger.info({ response }, "Generated science fact");
 
-    // Send a successful response with status and the generated fact
     res.status(200).json({
       status: constants.SUCCESS,
       fact: response,
     });
   } catch (error) {
-    // Log the error for monitoring and troubleshooting
-    console.error("Error generating science fact:", error);
+    logger.error(error, "Error generating science fact");
 
-    // Send an error response with appropriate HTTP status code and error message
     res.status(500).json({
       status: constants.ERROR,
       error: "Failed to generate science fact",

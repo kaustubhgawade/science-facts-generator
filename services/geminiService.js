@@ -7,6 +7,7 @@
 
 import { GoogleGenAI } from "@google/genai";
 import { withTimeout } from "./utility.js";
+import logger from "./logger.js";
 
 /**
  * Generates a random science fact using the Google Gemini API.
@@ -18,7 +19,7 @@ import { withTimeout } from "./utility.js";
  *
  * @example
  * const fact = await generateScienceFact1();
- * console.log(fact); // "The Earth's core is as hot as the surface of the sun."
+ * logger.info(fact); // "The Earth's core is as hot as the surface of the sun."
  *
  * @description
  * Uses the Gemini API with the "gemini-3-flash-preview" model to generate concise,
@@ -61,8 +62,8 @@ export async function generateScienceFact1() {
       });
     }
 
-    // console.log("Received response from Gemini API:", response);
-    // console.dir(response, { depth: null });
+    logger.info(response, "Received response from Gemini API:");
+    logger.debug({ response }, "Gemini raw response");
 
     // Extract and return the text content from the API response
     return response.text;

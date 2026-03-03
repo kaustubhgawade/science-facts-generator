@@ -1,10 +1,15 @@
 export function withTimeout(promise, ms, controller) {
+  let timeoutId;
+
   const timeout = new Promise((_, reject) => {
-    const id = setTimeout(() => {
-      controller.abort(); // cancel the request
+    timeoutId = setTimeout(() => {
+      if (controller) controller.abort();
       reject(new Error("Request timed out"));
     }, ms);
   });
 
-  return Promise.race([promise, timeout]).finally(() => clearTimeout(id));
+  return Promise.race([promise, timeout])
+    .finally(() => {
+      if (timeoutId) clearTimeout(timeoutId);
+    });
 }

@@ -35,5 +35,12 @@ jobs:
       - name: Run standard-version
         run: yarn release
 
+      - name: Generate Docs
+        run: yarn docs
+
+      - name: Add updated files
+        run: |
+          git add package.json CHANGELOG.md docs/
+
       - name: Push changes
         run: git push --follow-tags
