@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/kaustubhgawade/science-facts-generator/compare/v1.1.0...v1.1.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* handled fallback api bug gracefully ([bbfad86](https://github.com/kaustubhgawade/science-facts-generator/commit/bbfad86ee7c405a2e93fec5a8752af05857a89c5))
+
 ## 1.1.0 (2026-03-03)
 
 
