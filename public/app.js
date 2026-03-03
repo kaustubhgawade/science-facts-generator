@@ -7,17 +7,17 @@
 
 /**
  * Initialize the application when the DOM is fully loaded.
- * 
+ *
  * This event listener handles:
  * - Fetching a science fact from the backend API (/api/generateFacts)
  * - Parsing the JSON response
  * - Displaying the fact on the page
  * - Error handling and user feedback
  * - Removing the loading state from the page
- * 
+ *
  * @async
  * @listens DOMContentLoaded
- * 
+ *
  * @description
  * When the page loads, this function:
  * 1. Gets a reference to the fact element in the DOM
@@ -27,12 +27,12 @@
  * 5. If unsuccessful, displays an error message
  * 6. Logs any errors to the console
  * 7. Removes the "loading" class from the body element to show the final content
- * 
+ *
  * @example
  * // HTML structure expected:
  * // <div id="fact">Loading...</div>
  * // <body class="loading">
- * 
+ *
  * // Response format expected:
  * // { status: "SUCCESS", fact: "The Great Wall of China..." }
  * // or
@@ -45,7 +45,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Make an asynchronous fetch request to the backend API endpoint
     // This endpoint generates and returns a random science fact
-    const response = await fetch("/api/generateFacts");
+    const response = await fetch("/api/generateFacts", {
+      signal: AbortSignal.timeout(30000),
+    });
+
     console.log("Received response from server:", response);
 
     // Parse the response body as JSON

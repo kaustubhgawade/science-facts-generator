@@ -6,5 +6,5 @@ export function withTimeout(promise, ms, controller) {
     }, ms);
   });
 
-  return Promise.race([promise, timeout]);
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(id));
 }

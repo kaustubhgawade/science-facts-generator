@@ -58,24 +58,25 @@ export const router = express.Router();
  */
 router.get("/generateFacts", async (req, res) => {
   try {
-    // Log the incoming request for debugging and monitoring purposes
     console.log("Received request for /generateFacts");
     let response;
+
     // Check the USE_GEMINI environment variable to determine which API service to use
     if (process.env.USE_GEMINI === "true") {
-      // Use Google Gemini API for science fact generation
       console.log("Using Gemini Gen API to generate science fact");
 
       try {
         response = await generateScienceFact1();
       } catch (error) {
         console.error("Gemini failed or timed out", error);
-        
+
         // Fallback mechanism: If HANDLE_FALLBACK is enabled, wrap Gemini API call in try-catch
         // to gracefully handle failures or timeouts by switching to the API Ninjas Facts API
         if (process.env.HANDLE_FALLBACK === "true") {
           console.log("Switching to fallback Ninja API...");
           response = await generateScienceFact2();
+        }else {
+          throw error;
         }
       }
     } else {
