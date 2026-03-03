@@ -1,0 +1,77 @@
+/* variables */
+:root {
+  --primary-color: #adff2f;
+  --white-shade: #ffffff;
+  --black-shade: #121212;
+  --font-family: "Inter", sans-serif;
+}
+
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* body */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+  padding: 0 150px;
+
+  font-family: var(--font-family);
+  text-align: center;
+
+  color: var(--white-shade);
+  background-color: var(--black-shade);
+}
+
+/* heading */
+h1 {
+  font-size: 35px;
+}
+
+/* paragraph */
+p {
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+/* loader */
+#loader {
+  display: none;
+
+  width: 50px;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, var(--primary-color), #0000) top/8px 8px
+      no-repeat,
+    conic-gradient(#0000 30%, var(--primary-color));
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+
+  animation: spin 1s linear infinite;
+}
+
+/* loading state */
+body.loading main {
+  display: none;
+}
+
+body.loading #loader {
+  display: block;
+}
+
+/* animation */
+@keyframes spin {
+  100% {
+    transform: rotate(1turn);
+  }
+}

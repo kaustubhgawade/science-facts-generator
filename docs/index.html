@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>🔬 Science Facts Generator</h1>
+<p>A modern, interactive web application that generates and displays fascinating science facts powered by AI. Built with <strong>Express.js</strong> backend and vanilla JavaScript frontend, with support for both <strong>Google Gemini API</strong> and <strong>API Ninjas</strong> for fact generation.</p>
+<p><img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
+<img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+<img src="https://img.shields.io/badge/node.js-v16+-green" alt="Node.js"></p>
+<hr>
+<h2>✨ Features</h2>
+<ul>
+<li>🎯 <strong>Dual API Support</strong>: Switch between Google Gemini AI and API Ninjas for fact generation</li>
+<li>🔄 <strong>Automatic Fallback</strong>: When using Gemini, tries once and automatically falls back to API Ninjas if it fails or times out (configurable)</li>
+<li>🚀 <strong>Lightning Fast</strong>: Optimized performance with async/await patterns</li>
+<li>🎨 <strong>Modern UI</strong>: Clean, responsive interface with loading animations</li>
+<li>📱 <strong>Fully Responsive</strong>: Works seamlessly on desktop, tablet, and mobile devices</li>
+<li>🔧 <strong>Environment Configuration</strong>: Easy-to-use .env configuration system</li>
+<li>📚 <strong>JSDoc Documented</strong>: Comprehensive code documentation for all modules</li>
+<li>🛠️ <strong>Development Ready</strong>: Includes nodemon for hot-reload during development</li>
+</ul>
+<hr>
+<h2>🏗️ Project Structure</h2>
+<pre class="prettyprint source"><code>science-facts-generator/
+├── public/                 # Frontend static files
+│   ├── index.html         # Main HTML page
+│   ├── app.js             # Client-side JavaScript (fetches facts)
+│   └── style.css          # Styling (dark theme with lime highlights)
+├── services/              # Backend service modules
+│   ├── geminiService.js   # Google Gemini API integration
+│   ├── factApiService.js  # API Ninjas integration
+│   └── routes.js          # Express route handlers
+├── config/                # Configuration files
+│   └── constant.js        # Application constants (SUCCESS, ERROR)
+├── docs/                  # Generated JSDoc documentation
+├── server.js              # Main Express server
+├── package.json           # Dependencies and scripts
+├── .env                   # Environment variables (PORT, API keys)
+└── README.md              # This file
+</code></pre>
+<hr>
+<h2>🛠️ Tech Stack</h2>
+<h3>Backend</h3>
+<ul>
+<li><strong>Express.js</strong> (v5.2.1) - Web framework</li>
+<li><strong>Node.js</strong> - JavaScript runtime</li>
+<li><strong>CORS</strong> - Cross-Origin Resource Sharing</li>
+<li><strong>dotenv</strong> - Environment variable management</li>
+</ul>
+<h3>Frontend</h3>
+<ul>
+<li>Vanilla JavaScript (ES6+)</li>
+<li>HTML5</li>
+<li>CSS3 (Grid, Flexbox)</li>
+<li>Google Fonts (Inter)</li>
+</ul>
+<h3>AI/Data Services</h3>
+<ul>
+<li><strong>Google Gemini API</strong> - Advanced AI-powered fact generation</li>
+<li><strong>API Ninjas Facts API</strong> - Alternative fact data source</li>
+</ul>
+<h3>Development Tools</h3>
+<ul>
+<li><strong>Nodemon</strong> - Auto-reload on file changes</li>
+<li><strong>JSDoc</strong> - Code documentation generation</li>
+<li><strong>Yarn</strong> - Package manager</li>
+</ul>
+<hr>
+<h2>📋 Prerequisites</h2>
+<p>Before running this project, ensure you have:</p>
+<ul>
+<li><strong>Node.js</strong> (v16 or higher) - <a href="https://nodejs.org/">Download</a></li>
+<li><strong>Yarn</strong> (optional, but recommended) - <code>npm install -g yarn</code></li>
+<li><strong>API Keys</strong>:
+<ul>
+<li>Google Gemini API Key - <a href="https://ai.google.dev/">Get it here</a></li>
+<li>API Ninjas API Key - <a href="https://api-ninjas.com/api/facts">Get it here</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>🚀 Installation</h2>
+<h3>1. Clone the Repository</h3>
+<pre class="prettyprint source lang-bash"><code>git clone https://github.com/kaustubhgawade/science-facts-generator.git
+cd science-facts-generator
+</code></pre>
+<h3>2. Install Dependencies</h3>
+<pre class="prettyprint source lang-bash"><code># Using Yarn (recommended)
+yarn install
+
+# OR using npm
+npm install
+</code></pre>
+<h3>3. Setup Environment Variables</h3>
+<p>Create a <code>.env</code> file in the root directory:</p>
+<pre class="prettyprint source lang-env"><code># Server Port
+PORT=3000
+
+# Google Gemini API Key
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# API Ninjas Key
+X_API_KEY=your_api_ninjas_key_here
+
+# Choose which API to use (true = Gemini, false = API Ninjas)
+USE_GEMINI=true
+
+# Fallback handling: if true and Gemini fails or times out, automatically fallback to API Ninjas
+HANDLE_FALLBACK=true
+</code></pre>
+<blockquote>
+<p>⚠️ <strong>Important</strong>: Never commit <code>.env</code> file to version control. It contains sensitive API keys.</p>
+</blockquote>
+<hr>
+<h2>🎮 Usage</h2>
+<h3>Development Mode (with hot-reload)</h3>
+<pre class="prettyprint source lang-bash"><code>yarn dev
+# or
+npm run dev
+</code></pre>
+<p>Server runs on <code>http://localhost:3000</code> with automatic restart on file changes.</p>
+<h3>Production Mode</h3>
+<pre class="prettyprint source lang-bash"><code>yarn start
+# or
+npm start
+</code></pre>
+<p>Server runs on <code>http://localhost:3000</code> (no auto-reload).</p>
+<h3>Generate Documentation</h3>
+<pre class="prettyprint source lang-bash"><code>yarn docs
+# or
+npm run docs
+</code></pre>
+<p>Generates HTML documentation in the <code>docs/</code> directory.</p>
+<hr>
+<h2>🌐 API Endpoints</h2>
+<h3>Get Science Fact</h3>
+<p><strong>Endpoint:</strong> <code>GET /api/generateFacts</code></p>
+<p><strong>Response (Success - 200):</strong></p>
+<pre class="prettyprint source lang-json"><code>{
+  &quot;status&quot;: &quot;SUCCESS&quot;,
+  &quot;fact&quot;: &quot;The human body contains approximately 206 bones in adults.&quot;
+}
+</code></pre>
+<p><strong>Response (Error - 500):</strong></p>
+<pre class="prettyprint source lang-json"><code>{
+  &quot;status&quot;: &quot;ERROR&quot;,
+  &quot;error&quot;: &quot;Failed to generate science fact&quot;
+}
+</code></pre>
+<hr>
+<h2>⚙️ Configuration</h2>
+<h3>Switching Between APIs</h3>
+<h4>Use Google Gemini API (AI-Powered)</h4>
+<pre class="prettyprint source lang-env"><code>USE_GEMINI=true
+GEMINI_API_KEY=your_key_here
+</code></pre>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Advanced AI-generated facts</li>
+<li>More contextual and detailed information</li>
+<li>Supports multiple topics</li>
+</ul>
+<h4>Use API Ninjas (Data-Based)</h4>
+<pre class="prettyprint source lang-env"><code>USE_GEMINI=false
+X_API_KEY=your_key_here
+</code></pre>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Reliable fact database</li>
+<li>Fast response times</li>
+<li>No AI generation overhead</li>
+</ul>
+<h3>Environment Variables</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PORT</code></td>
+<td>Server port number</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td><code>GEMINI_API_KEY</code></td>
+<td>Google Gemini API key</td>
+<td>✅ If <code>USE_GEMINI=true</code></td>
+</tr>
+<tr>
+<td><code>X_API_KEY</code></td>
+<td>API Ninjas API key</td>
+<td>✅ If <code>USE_GEMINI=false</code> OR <code>HANDLE_FALLBACK=true</code></td>
+</tr>
+<tr>
+<td><code>USE_GEMINI</code></td>
+<td>Choose API service (true/false)</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td><code>HANDLE_FALLBACK</code></td>
+<td>Enable fallback to API Ninjas if Gemini fails/times out</td>
+<td>❌ No (default: false)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>📁 Module Documentation</h2>
+<h3>Server (<code>server.js</code>)</h3>
+<ul>
+<li>Initializes Express application</li>
+<li>Configures middleware (CORS, JSON parsing, static files)</li>
+<li>Registers API routes</li>
+</ul>
+<h3>Routes (<code>services/routes.js</code>)</h3>
+<ul>
+<li>Defines <code>/api/generateFacts</code> endpoint</li>
+<li>Routes requests to appropriate fact service based on configuration</li>
+</ul>
+<h3>Gemini Service (<code>services/geminiService.js</code>)</h3>
+<ul>
+<li>Integrates with Google Gemini API</li>
+<li>Generates AI-powered science facts</li>
+<li>Handles API errors gracefully</li>
+</ul>
+<h3>Fact API Service (<code>services/factApiService.js</code>)</h3>
+<ul>
+<li>Integrates with API Ninjas Facts API</li>
+<li>Fetches pre-existing science facts</li>
+<li>Manages authentication and error handling</li>
+</ul>
+<h3>Frontend (<code>public/app.js</code>)</h3>
+<ul>
+<li>Loads when DOM is ready</li>
+<li>Fetches facts from backend API</li>
+<li>Displays facts in the UI</li>
+<li>Handles loading/error states</li>
+</ul>
+<h3>Constants (<code>config/constant.js</code>)</h3>
+<ul>
+<li>Centralized status constants</li>
+<li>Standardized response formats</li>
+</ul>
+<hr>
+<h2>🎨 User Interface</h2>
+<p>The application features:</p>
+<ul>
+<li><strong>Dark Theme</strong>: Black background (#121212) with lime (#adff2f) accents</li>
+<li><strong>Loading Animation</strong>: Smooth loader while fetching facts</li>
+<li><strong>Responsive Design</strong>: Adapts to all screen sizes</li>
+<li><strong>Clean Typography</strong>: Uses Inter font family for modern appearance</li>
+<li><strong>Centered Layout</strong>: Facts displayed prominently in the center of the screen</li>
+</ul>
+<hr>
+<h2>🔄 How It Works</h2>
+<pre class="prettyprint source"><code>User Opens App
+    ↓
+Page Loads (DOM Ready)
+    ↓
+app.js Sends Request to /api/generateFacts
+    ↓
+Server Routes Request Based on USE_GEMINI Flag
+    ├─→ If True: Calls Gemini API Service
+    │   ├─→ Tries Gemini API once
+    │   └─→ If HANDLE_FALLBACK is True and Gemini fails/times out:
+    │       └─→ Automatically falls back to API Ninjas
+    │       └─→ Fetches pre-existing fact
+    │   └─→ If HANDLE_FALLBACK is False:
+    │       └─→ Returns error on failure
+    └─→ If False: Calls API Ninjas Service directly
+        └─→ Fetches pre-existing fact
+    ↓
+Backend Returns JSON Response
+    ├─→ Success: { status: &quot;SUCCESS&quot;, fact: &quot;...&quot; }
+    └─→ Error: { status: &quot;ERROR&quot;, error: &quot;...&quot; }
+    ↓
+Frontend Displays Fact or Error Message
+    ↓
+Loading Animation Removed
+</code></pre>
+<hr>
+<h2>📚 Code Documentation</h2>
+<p>All modules include comprehensive JSDoc comments. Generate HTML documentation:</p>
+<pre class="prettyprint source lang-bash"><code>yarn docs
+</code></pre>
+<p>This creates a <code>docs/</code> folder with complete API reference, type definitions, and usage examples.</p>
+<hr>
+<h2>🤝 Contributing</h2>
+<p>Contributions are welcome! Here's how:</p>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
+<li>Commit your changes (<code>git commit -m 'Add amazing feature'</code>)</li>
+<li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
+<li>Open a Pull Request</li>
+</ol>
+<hr>
+<h2>📝 License</h2>
+<p>This project is licensed under the <strong>MIT License</strong> - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+<hr>
+<h2>👤 Author</h2>
+<p><strong>Kaustubh Gawade</strong></p>
+<ul>
+<li>Email: kaustubhgawade2602@gmail.com</li>
+<li>GitHub: <a href="https://github.com/kaustubhgawade">kaustubhgawade</a></li>
+<li>Repository: <a href="https://github.com/kaustubhgawade/science-facts-generator">science-facts-generator</a></li>
+</ul>
+<hr>
+<h2>🐛 Troubleshooting</h2>
+<h3>Issue: API Key Error</h3>
+<p><strong>Solution:</strong> Verify your API keys in the <code>.env</code> file are correct and have not expired.</p>
+<h3>Issue: Port Already in Use</h3>
+<p><strong>Solution:</strong> Change the <code>PORT</code> in <code>.env</code> to an available port (e.g., 3001, 3002).</p>
+<h3>Issue: CORS Error in Browser</h3>
+<p><strong>Solution:</strong> Ensure the server is running and the fetch URL matches the server address.</p>
+<h3>Issue: Fact Not Loading</h3>
+<p><strong>Solution:</strong> Check browser console for errors, verify API service credentials, ensure internet connection.</p>
+<hr>
+<h2>📞 Support</h2>
+<p>For issues and feature requests, please open an <a href="https://github.com/kaustubhgawade/science-facts-generator/issues">issue on GitHub</a>.</p>
+<hr>
+<h2>🎓 Learning Resources</h2>
+<ul>
+<li><a href="https://expressjs.com/">Express.js Documentation</a></li>
+<li><a href="https://ai.google.dev/">Google Gemini API</a></li>
+<li><a href="https://api-ninjas.com/">API Ninjas</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">JavaScript Fetch API</a></li>
+<li><a href="https://jsdoc.app/">JSDoc Tutorial</a></li>
+</ul>
+<hr>
+<p><strong>Enjoy exploring amazing science facts! 🚀🔬</strong></p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-config_constant.html">config/constant</a></li><li><a href="module-factApiService.html">factApiService</a></li><li><a href="module-geminiService.html">geminiService</a></li><li><a href="module-routes.html">routes</a></li><li><a href="module-server.html">server</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Mar 03 2026 09:28:20 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

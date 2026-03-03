@@ -1,0 +1,28 @@
+{
+  "name": "science-facts-generator",
+  "version": "1.0.0",
+  "description": "Science Facts Generator is a simple web application that displays interesting and educational science facts in an interactive way.",
+  "main": "server.js",
+  "repository": "https://github.com/kaustubhgawade/science-facts-generator.git",
+  "author": "Kaustubh Gawade <kaustubhgawade2602@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "docs": "jsdoc public/ config/ services/ server.js -r -d docs -R README.md",
+    "release": "standard-version"
+  },
+  "dependencies": {
+    "@google/genai": "^1.43.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.5",
+    "nodemon": "^3.1.14",
+    "standard-version": "^9.5.0"
+  }
+}
