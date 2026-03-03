@@ -6,6 +6,7 @@
  */
 
 import { GoogleGenAI } from "@google/genai";
+import { withTimeout } from "./utility.js";
 
 /**
  * Generates a random science fact using the Google Gemini API.
@@ -30,24 +31,35 @@ export async function generateScienceFact1() {
     // Initialize the Google Gemini AI client with default configuration
     // The API key is automatically loaded from the GEMINI_API_KEY environment variable
     const ai = new GoogleGenAI({});
+    const controller = new AbortController();
 
     // Define the prompt for generating science facts
-    // Constraints enforce concise, interesting, and factual content
     const prompt = `
     Generate a random science fact. The fact should be concise and interesting.
     It should be a max of 1-2 sentence and should not exceed 35 words.
+    Every time you generate a fact, it should be different from the previous one.
     `;
 
-    // Send the prompt to the Gemini API and await the response
-    // The "gemini-3-flash-preview" model is optimized for fast, reliable responses
-    const apiCall = ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: prompt,
-      signal: controller.signal,
-    });
+    let response;
 
-    // Wait max 20 seconds
-    const response = await withTimeout(apiCall, 20000, controller);
+    // Check if fallback mechanism is enabled to determine if timeout protection is needed
+    if (process.env.HANDLE_FALLBACK === "true") {
+      // Enable timeout protection: if request takes longer than 20 seconds, abort and handle via fallback
+      const controller = new AbortController();
+      const apiCallWithSignal = ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+        signal: controller.signal,
+      });
+      response = await withTimeout(apiCallWithSignal, 20000, controller);
+    } else {
+      // No fallback enabled: await response without timeout constraints
+      response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+        signal: controller.signal,
+      });
+    }
 
     // console.log("Received response from Gemini API:", response);
     // console.dir(response, { depth: null });
@@ -55,8 +67,7 @@ export async function generateScienceFact1() {
     // Extract and return the text content from the API response
     return response.text;
   } catch (error) {
-    // Re-throw any errors encountered during API communication or processing
-    // This allows calling functions to handle errors appropriately
+    // Throw any errors encountered during API communication or processing
     throw error;
   }
 }

@@ -1,4 +1,4 @@
-function withTimeout(promise, ms, controller) {
+export function withTimeout(promise, ms, controller) {
   const timeout = new Promise((_, reject) => {
     const id = setTimeout(() => {
       controller.abort(); // cancel the request

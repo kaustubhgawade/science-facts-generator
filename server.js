@@ -53,4 +53,5 @@ server.use('/api', router);
  */
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  console.log(`Visit http://localhost:${PORT} to access the application`);
 });

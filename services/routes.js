@@ -65,18 +65,16 @@ router.get("/generateFacts", async (req, res) => {
     if (process.env.USE_GEMINI === "true") {
       // Use Google Gemini API for science fact generation
       console.log("Using Gemini Gen API to generate science fact");
-      response = await generateScienceFact1();
 
-      // Fallback mechanism: If HANDLE_FALLBACK is enabled, wrap Gemini API call in try-catch
-      // to gracefully handle failures or timeouts by switching to the API Ninjas Facts API
-      if (process.env.HANDLE_FALLBACK === "true") {
-        try {
-          response = await generateScienceFact1();
-        } catch (error) {
-          console.error(
-            "Gemini failed or timed out. Switching to fallback API...",
-            error,
-          );
+      try {
+        response = await generateScienceFact1();
+      } catch (error) {
+        console.error("Gemini failed or timed out", error);
+        
+        // Fallback mechanism: If HANDLE_FALLBACK is enabled, wrap Gemini API call in try-catch
+        // to gracefully handle failures or timeouts by switching to the API Ninjas Facts API
+        if (process.env.HANDLE_FALLBACK === "true") {
+          console.log("Switching to fallback Ninja API...");
           response = await generateScienceFact2();
         }
       }
