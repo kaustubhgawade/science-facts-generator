@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/kaustubhgawade/science-facts-generator/compare/v1.1.1...v1.2.0) (2026-03-03)
+
+
+### Features
+
+* improved logging using pino and add docs script to run in yml release file ([ef27278](https://github.com/kaustubhgawade/science-facts-generator/commit/ef2727841171288e13dc7096a6c5e85485b05101))
+
+
+### Bug Fixes
+
+* fixed memory leak in timeout, added timeout in frontend and add throw err if fallback is false ([f460cf2](https://github.com/kaustubhgawade/science-facts-generator/commit/f460cf287e4bd73bfb528a626b9686bc8ccca0a7))
+
 ### [1.1.1](https://github.com/kaustubhgawade/science-facts-generator/compare/v1.1.0...v1.1.1) (2026-03-03)
 
 

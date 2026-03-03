@@ -1,6 +1,6 @@
 {
   "name": "science-facts-generator",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Science Facts Generator is a simple web application that displays interesting and educational science facts in an interactive way.",
   "main": "server.js",
   "repository": "https://github.com/kaustubhgawade/science-facts-generator.git",
