@@ -118,3 +118,24 @@ body.loading #loader {
     transform: rotate(1turn);
   }
 }
+
+/* media queries */
+@media (max-width: 1000px) {
+  body {
+    padding: 0 60px;
+  }
+  h1 {
+    font-size: 25px;
+  }
+  p {
+    font-size: 16px;
+  }
+}
+@media (max-width: 400px) {
+  body {
+    padding: 0 30px;
+  }
+  h1 {
+    font-size: 20px;
+  }
+}

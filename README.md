@@ -2,7 +2,7 @@
 
 A modern, interactive web application that generates and displays fascinating science facts powered by AI. Built with **Express.js** backend and vanilla JavaScript frontend, with support for both **Google Gemini API** and **API Ninjas** for fact generation.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Version](https://img.shields.io/badge/version-1.2.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Node.js](https://img.shields.io/badge/node.js-v16+-green)
 
@@ -25,21 +25,46 @@ A modern, interactive web application that generates and displays fascinating sc
 
 ```
 science-facts-generator/
-├── public/                 # Frontend static files
-│   ├── index.html         # Main HTML page
-│   ├── app.js             # Client-side JavaScript (fetches facts)
-│   └── style.css          # Styling (dark theme with lime highlights)
-├── services/              # Backend service modules
-│   ├── geminiService.js   # Google Gemini API integration
-│   ├── factApiService.js  # API Ninjas integration
-│   └── routes.js          # Express route handlers
-├── config/                # Configuration files
-│   └── constant.js        # Application constants (SUCCESS, ERROR)
-├── docs/                  # Generated JSDoc documentation
-├── server.js              # Main Express server
-├── package.json           # Dependencies and scripts
-├── .env                   # Environment variables (PORT, API keys)
-└── README.md              # This file
+│
+├── .github/                   # GitHub configuration
+│   └── workflows/             # GitHub Actions workflows
+│       └── release.yml        # Automated release workflow
+│
+├── .postman/                  # Postman collection for testing API endpoints
+|
+├── config/                    # Configuration files
+│   └── constant.js            # Application constants (STATUS, TYPES, ENDPOINTS)
+|
+├── docs/                      # Generated JSDoc documentation
+│                                    
+├── public/                    # Frontend static files
+│   ├── index.html             # Main HTML page
+│   ├── categories.html        # Categories HTML page
+│   ├── app.js                 # Client-side JavaScript (fetches facts)
+│   ├── generateCategory.js    # Client-side JavaScript (fetches facts based on random categories)
+│   └── style.css              # Styling (dark theme with lime highlights)
+|
+├── services/                  # Backend service modules
+│   ├── geminiService.js       # Google Gemini API integration
+│   ├── factApiService.js      # API Ninjas integration
+│   ├── logger.js              # Logger mechanism integration
+│   ├── utility.js             # Other utility functions
+│   └── routes.js              # Express route handlers
+|
+├── server.js                  # Main Express server entry point
+├── env.js                     # Loads environment variables using dotenv
+│
+├── .env                       # Local environment variables (not committed)
+├── .env.example               # Example environment configuration for developers
+│
+├── .gitignore                 # Git ignored files and folders
+├── CHANGELOG.md               # Project change history
+├── LICENSE                    # Project license
+│
+├── package.json               # Project dependencies and scripts
+├── yarn.lock                  # Yarn dependency lock file
+│
+└── README.md                  # Project documentation
 ```
 
 ---
@@ -48,30 +73,42 @@ science-facts-generator/
 
 ### Backend
 
-- **Express.js** (v5.2.1) - Web framework
-- **Node.js** - JavaScript runtime
-- **CORS** - Cross-Origin Resource Sharing
-- **dotenv** - Environment variable management
+- **Node.js** – JavaScript runtime environment
+- **Express.js (v5.2.1)** – Web framework for building REST APIs
+- **CORS** – Enables cross-origin requests
+- **dotenv** – Environment configuration management
+- **Pino** – High-performance structured logging
 
 ### Frontend
 
 - Vanilla JavaScript (ES6+)
 - HTML5
-- CSS3 (Grid, Flexbox)
+- CSS3
 - Google Fonts (Inter)
 
-### AI/Data Services
+### AI / Data Services
 
-- **Google Gemini API** - Advanced AI-powered fact generation
-- **API Ninjas Facts API** - Alternative fact data source
+- **Google Gemini API** – AI-powered science fact generation
+- **API Ninjas Facts API** – Alternative data source used as fallback
 
 ### Development Tools
 
-- **Nodemon** - Auto-reload on file changes
-- **JSDoc** - Code documentation generation
-- **Yarn** - Package manager
+- **Nodemon** – Auto-reloads the server during development
+- **JSDoc** – Generates project documentation
+- **Yarn** – Package manager
+- **pino-pretty** – Pretty prints logs in development
 
----
+### Release & Versioning
+
+- **standard-version** – Automated semantic versioning and changelog generation
+
+### API Testing
+
+- **Postman** – API testing via included Postman collection
+
+### CI / Automation
+
+- **GitHub Actions** – Automated release workflow
 
 ## 📋 Prerequisites
 
@@ -112,11 +149,15 @@ Create a `.env` file in the root directory:
 # Server Port
 PORT=3000
 
-# Google Gemini API Key
-GEMINI_API_KEY=your_gemini_api_key_here
+# ENVIRONMENT
+ENV=development
 
-# API Ninjas Key
-X_API_KEY=your_api_ninjas_key_here
+# LOG_LEVEL
+LOG_LEVEL=debug
+
+# API KEYS
+GEMINI_API_KEY=<your_gemini_api_key_here>
+X_API_KEY=<your_api_ninja_key_here>
 
 # Choose which API to use (true = Gemini, false = API Ninjas)
 USE_GEMINI=true
@@ -126,6 +167,8 @@ HANDLE_FALLBACK=true
 ```
 
 > ⚠️ **Important**: Never commit `.env` file to version control. It contains sensitive API keys.
+
+> ⚠️ **Quick Setup**: Use .env.example file contents in .env file and replace API keys
 
 ---
 
@@ -163,29 +206,21 @@ Generates HTML documentation in the `docs/` directory.
 
 ---
 
-## 🌐 API Endpoints
+## 📮 Using the Postman Collection
 
-### Get Science Fact
+This repository includes a **Postman collection** that allows you to quickly test all available API endpoints without manually creating requests.
 
-**Endpoint:** `GET /api/generateFacts`
+Collection location: `.postman/`
 
-**Response (Success - 200):**
+### Import the Collection into Postman
 
-```json
-{
-  "status": "SUCCESS",
-  "fact": "The human body contains approximately 206 bones in adults."
-}
-```
+1. Open **Postman**
+2. Click the **Import** button (top left)
+3. Select **Upload Folder**
+4. Navigate to the project folder and select
+5. Click **Import**
 
-**Response (Error - 500):**
-
-```json
-{
-  "status": "ERROR",
-  "error": "Failed to generate science fact"
-}
-```
+The collection will now appear in your **Postman workspace** with all predefined API requests.
 
 ---
 
@@ -231,44 +266,6 @@ X_API_KEY=your_key_here
 
 ---
 
-## 📁 Module Documentation
-
-### Server (`server.js`)
-
-- Initializes Express application
-- Configures middleware (CORS, JSON parsing, static files)
-- Registers API routes
-
-### Routes (`services/routes.js`)
-
-- Defines `/api/generateFacts` endpoint
-- Routes requests to appropriate fact service based on configuration
-
-### Gemini Service (`services/geminiService.js`)
-
-- Integrates with Google Gemini API
-- Generates AI-powered science facts
-- Handles API errors gracefully
-
-### Fact API Service (`services/factApiService.js`)
-
-- Integrates with API Ninjas Facts API
-- Fetches pre-existing science facts
-- Manages authentication and error handling
-
-### Frontend (`public/app.js`)
-
-- Loads when DOM is ready
-- Fetches facts from backend API
-- Displays facts in the UI
-- Handles loading/error states
-
-### Constants (`config/constant.js`)
-
-- Centralized status constants
-- Standardized response formats
-
----
 
 ## 🎨 User Interface
 
@@ -279,37 +276,6 @@ The application features:
 - **Responsive Design**: Adapts to all screen sizes
 - **Clean Typography**: Uses Inter font family for modern appearance
 - **Centered Layout**: Facts displayed prominently in the center of the screen
-
----
-
-## 🔄 How It Works
-
-```
-User Opens App
-    ↓
-Page Loads (DOM Ready)
-    ↓
-app.js Sends Request to /api/generateFacts
-    ↓
-Server Routes Request Based on USE_GEMINI Flag
-    ├─→ If True: Calls Gemini API Service
-    │   ├─→ Tries Gemini API once
-    │   └─→ If HANDLE_FALLBACK is True and Gemini fails/times out:
-    │       └─→ Automatically falls back to API Ninjas
-    │       └─→ Fetches pre-existing fact
-    │   └─→ If HANDLE_FALLBACK is False:
-    │       └─→ Returns error on failure
-    └─→ If False: Calls API Ninjas Service directly
-        └─→ Fetches pre-existing fact
-    ↓
-Backend Returns JSON Response
-    ├─→ Success: { status: "SUCCESS", fact: "..." }
-    └─→ Error: { status: "ERROR", error: "..." }
-    ↓
-Frontend Displays Fact or Error Message
-    ↓
-Loading Animation Removed
-```
 
 ---
 
