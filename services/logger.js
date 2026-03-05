@@ -21,10 +21,14 @@
 import pino from "pino";
 
 const isProduction = process.env.NODE_ENV === "production";
+const logLevel = process.env.LOG_LEVEL || "info";
+console.log(process.env.NODE_ENV, process.env.LOG_LEVEL);
+console.log(isProduction, logLevel);
+
 
 const logger = pino({
   // fall back to 'info' when LOG_LEVEL isn't defined to avoid Pino error
-  level: process.env.LOG_LEVEL || "info",
+  level: logLevel || "debug",
 
   transport: !isProduction
     ? {

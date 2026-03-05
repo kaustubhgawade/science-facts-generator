@@ -1,0 +1,28 @@
+{
+  "info": {
+    "name": "Generate Fact by Category",
+    "description": "Generates a science fact based on a specific category passed as a query parameter"
+  },
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "http://localhost:3000/api/generateFactByCategory?category=Biology",
+      "protocol": "http",
+      "host": ["localhost"],
+      "port": "3000",
+      "path": ["api", "generateFactByCategory"],
+      "query": [
+        {
+          "key": "category",
+          "value": "Biology",
+          "description": "The science category for which to generate a fact"
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": "SUCCESS",
+    "fact": "The human brain uses approximately 20% of the body's total energy."
+  }
+}

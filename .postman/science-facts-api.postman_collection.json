@@ -1,0 +1,65 @@
+{
+  "info": {
+    "_postman_id": "science-facts-api",
+    "name": "Science Facts Generator API",
+    "description": "Collection of all API endpoints for the Science Facts Generator application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Generate Random Fact",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/generateFacts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "generateFacts"]
+        },
+        "description": "Generates a random science fact. Uses either Gemini API or API Ninjas based on configuration."
+      },
+      "response": []
+    },
+    {
+      "name": "Generate Fact Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/generateFactCategories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "generateFactCategories"]
+        },
+        "description": "Generates a list of 5 random science fact categories using Gemini API."
+      },
+      "response": []
+    },
+    {
+      "name": "Generate Fact by Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/generateFactByCategory?category=Biology",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "generateFactByCategory"],
+          "query": [
+            {
+              "key": "category",
+              "value": "Biology",
+              "description": "The science category for which to generate a fact"
+            }
+          ]
+        },
+        "description": "Generates a science fact based on a specific category passed as a query parameter."
+      },
+      "response": []
+    }
+  ]
+}

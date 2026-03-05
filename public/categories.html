@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="A simple science fact generator that displays interesting and surprising science facts with a clean modern interface."
+      content="A simple science fact generator that displays interesting and surprising science facts"
     />
-    <title>Science fact generator</title>
+    <title>Science fact generator | Categories</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,14 +19,15 @@
   <body class="loading">
     <div id="loader"></div>
     <button class="btn switch">
-      <a href="./categories.html">Categories</a>
+      <a href="/">Home</a>
     </button>
     <main>
       <div id="content">
-        <p>Here's your science fact...</p>
-        <h1 id="fact"></h1>
+        <p>Choose a category to view a science fact</p>
+        <h1 id="categories"></h1>
+        <h1 id="fact2"></h1>
       </div>
     </main>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./generateCategory.js"></script>
   </body>
 </html>

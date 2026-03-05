@@ -1,0 +1,21 @@
+{
+  "info": {
+    "name": "Generate Fact Categories",
+    "description": "Generates a list of 5 random science fact categories using Gemini API"
+  },
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "http://localhost:3000/api/generateFactCategories",
+      "protocol": "http",
+      "host": ["localhost"],
+      "port": "3000",
+      "path": ["api", "generateFactCategories"]
+    }
+  },
+  "response": {
+    "status": "SUCCESS",
+    "categories": ["Biology", "Chemistry", "Physics", "Astronomy", "Geology"]
+  }
+}

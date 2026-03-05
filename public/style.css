@@ -1,8 +1,8 @@
 /* variables */
 :root {
   --primary-color: #adff2f;
-  --white-shade: #ffffff;
-  --black-shade: #121212;
+  --white: #ffffff;
+  --black: #121212;
   --font-family: "Inter", sans-serif;
 }
 
@@ -28,8 +28,8 @@ body {
   font-family: var(--font-family);
   text-align: center;
 
-  color: var(--white-shade);
-  background-color: var(--black-shade);
+  color: var(--white);
+  background-color: var(--black);
 }
 
 /* heading */
@@ -40,7 +40,50 @@ h1 {
 /* paragraph */
 p {
   font-size: 20px;
+  margin-bottom: 10px;
   color: var(--primary-color);
+}
+
+/* button */
+.btn {
+  cursor: pointer;
+  background-color: var(--black);
+  color: var(--white);
+  transition: all 0.3s ease-in-out;
+}
+.switch {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  padding: 6px 12px;
+  border: 2px solid var(--white);
+  border-radius: 5px;
+}
+.switch:hover {
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.categories-btn {
+  padding: 8px 15px;
+  border-radius: 50px;
+  border: 2px solid var(--white);
+  margin: 8px;
+}
+.categories-btn:hover {
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* divs */
+#fact2 {
+  display: none;
 }
 
 /* loader */

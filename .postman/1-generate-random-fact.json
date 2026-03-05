@@ -1,0 +1,21 @@
+{
+  "info": {
+    "name": "Generate Random Fact",
+    "description": "Generates a random science fact using either Gemini API or API Ninjas based on configuration"
+  },
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "http://localhost:3000/api/generateFacts",
+      "protocol": "http",
+      "host": ["localhost"],
+      "port": "3000",
+      "path": ["api", "generateFacts"]
+    }
+  },
+  "response": {
+    "status": "SUCCESS",
+    "fact": "The human body contains approximately 206 bones."
+  }
+}

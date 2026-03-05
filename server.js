@@ -4,14 +4,10 @@
  * This module initializes and configures an Express.js server with middleware
  * for CORS, JSON parsing, static file serving, and API route handling.
  */
+import "./env.js";
 
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-
-// Load environment variables from .env file
-// This includes PORT, USE_GEMINI, GEMINI_API_KEY, X_API_KEY, etc.
-dotenv.config();
 
 import { router } from "./services/routes.js";
 import logger from "./services/logger.js";
@@ -54,5 +50,6 @@ server.use('/api', router);
  */
 server.listen(PORT, () => {
   logger.info(`Server is running on port ${PORT}`);
+  logger.debug(`Server is running on port ${PORT}`);
   logger.info(`Visit http://localhost:${PORT} to access the application`);
 });

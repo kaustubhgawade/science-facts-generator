@@ -40,35 +40,25 @@
  */
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // Get reference to the DOM element where the fact will be displayed
     const factElement = document.getElementById("fact");
 
-    // Make an asynchronous fetch request to the backend API endpoint
-    // This endpoint generates and returns a random science fact
+    // Generates a random scienece fact. Timeout is set to max 30 seconds.
     const response = await fetch("/api/generateFacts", {
       signal: AbortSignal.timeout(30000),
     });
-
-    console.log("Received response from server:", response);
-
-    // Parse the response body as JSON
     const data = await response.json();
+
     console.log("Parsed JSON data:", data);
 
-    // Check if the API request was successful
     if (data.status === "SUCCESS") {
-      // Display the retrieved science fact in the DOM element
       factElement.innerText = data.fact;
     } else {
-      // Display an error message if the API returned an error status
       factElement.innerText = "Failed to load science fact. Please try again.";
     }
   } catch (error) {
-    // Log any errors encountered during fetch or JSON parsing
     console.error("Error:", error);
   } finally {
-    // Remove the "loading" class from the body to stop showing the loading spinner/message
-    // This ensures the page displays the final content (fact or error message)
+    // Remove the "loading" class from the body to stop showing the loading spinner/message. This ensures the page displays the final content (fact or error message)
     document.querySelector("body").classList.remove("loading");
   }
 });
