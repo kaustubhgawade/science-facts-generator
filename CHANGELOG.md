@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/kaustubhgawade/science-facts-generator/compare/v1.2.0...v1.2.1) (2026-03-05)
+
+
+### Bug Fixes
+
+* added generate by category functionality, fixed env loading issue, added postman collection ([c97251e](https://github.com/kaustubhgawade/science-facts-generator/commit/c97251efb4844d1125623d1469da38775a62590d))
+
 ## [1.2.0](https://github.com/kaustubhgawade/science-facts-generator/compare/v1.1.1...v1.2.0) (2026-03-03)
 
 
